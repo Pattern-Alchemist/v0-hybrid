@@ -57,32 +57,44 @@ export default function SiteHeader() {
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               className="text-sm font-medium text-gray-300 transition-colors hover:text-cyan-400 flex items-center gap-1"
+              aria-expanded={isDropdownOpen}
             >
               More
-              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg
+                className={`h-4 w-4 transition-transform ${isDropdownOpen ? "rotate-180" : ""}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
               </svg>
             </button>
             {isDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-48 rounded-lg bg-black/95 border border-cyan-500/30 shadow-lg">
-                <Link
-                  href="#services"
-                  onClick={() => setIsDropdownOpen(false)}
-                  className="block px-4 py-2 text-sm text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/10 rounded-t-lg"
+              <div className="absolute right-0 mt-2 w-48 rounded-lg bg-black/95 border border-cyan-500/30 shadow-lg z-10">
+                <button
+                  onClick={() => {
+                    setIsDropdownOpen(false)
+                    const section = document.getElementById("services")
+                    if (section) section.scrollIntoView({ behavior: "smooth" })
+                  }}
+                  className="w-full text-left block px-4 py-2 text-sm text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/10 rounded-t-lg transition-colors"
                 >
                   Services
-                </Link>
-                <Link
-                  href="#booking"
-                  onClick={() => setIsDropdownOpen(false)}
-                  className="block px-4 py-2 text-sm text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/10"
+                </button>
+                <button
+                  onClick={() => {
+                    setIsDropdownOpen(false)
+                    const section = document.getElementById("booking")
+                    if (section) section.scrollIntoView({ behavior: "smooth" })
+                  }}
+                  className="w-full text-left block px-4 py-2 text-sm text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/10 transition-colors"
                 >
                   Book Session
-                </Link>
+                </button>
                 <Link
-                  href="#admin"
+                  href="/admin"
                   onClick={() => setIsDropdownOpen(false)}
-                  className="block px-4 py-2 text-sm text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/10 rounded-b-lg"
+                  className="block px-4 py-2 text-sm text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/10 rounded-b-lg transition-colors"
                 >
                   Admin
                 </Link>
@@ -116,20 +128,26 @@ export default function SiteHeader() {
               {item.label}
             </Link>
           ))}
-          <Link
-            href="#services"
-            onClick={() => setIsOpen(false)}
-            className="block py-2 text-sm font-medium text-gray-300 transition-colors hover:text-cyan-400"
+          <button
+            onClick={() => {
+              setIsOpen(false)
+              const section = document.getElementById("services")
+              if (section) section.scrollIntoView({ behavior: "smooth" })
+            }}
+            className="w-full text-left block py-2 text-sm font-medium text-gray-300 transition-colors hover:text-cyan-400"
           >
             Services
-          </Link>
-          <Link
-            href="#booking"
-            onClick={() => setIsOpen(false)}
-            className="block py-2 text-sm font-medium text-gray-300 transition-colors hover:text-cyan-400"
+          </button>
+          <button
+            onClick={() => {
+              setIsOpen(false)
+              const section = document.getElementById("booking")
+              if (section) section.scrollIntoView({ behavior: "smooth" })
+            }}
+            className="w-full text-left block py-2 text-sm font-medium text-gray-300 transition-colors hover:text-cyan-400"
           >
             Book Session
-          </Link>
+          </button>
         </nav>
       )}
     </header>

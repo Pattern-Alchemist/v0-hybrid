@@ -26,7 +26,8 @@ import {
 } from "lucide-react"
 
 import Chart from "chart.js/auto"
-import KarmicPatternBreaker from "@/components/karmic-pattern-breaker"
+import ServiceCards from "@/components/service-cards"
+import KarmicToolsSuite from "@/components/karmic-tools-suite"
 
 export default function HomePage() {
   // FOOTER YEAR
@@ -825,8 +826,11 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* KARMIC PATTERN BREAKER */}
-        <KarmicPatternBreaker />
+        {/* NEW SERVICE CARDS SECTION */}
+        <ServiceCards />
+
+        {/* NEW KARMIC TOOLS SUITE SECTION */}
+        <KarmicToolsSuite />
 
         {/* KARMIC MAP */}
         <section id="karmic" className="relative mt-16 sm:mt-24 text-white">
