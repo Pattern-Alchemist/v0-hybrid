@@ -4,7 +4,6 @@ import { useEffect, useRef, useState, useCallback } from "react"
 import {
   Calendar,
   Menu,
-  Stars,
   Compass,
   FileDown,
   CheckCircle2,
@@ -27,6 +26,7 @@ import {
 } from "lucide-react"
 
 import Chart from "chart.js/auto"
+import KarmicPatternBreaker from "@/components/karmic-pattern-breaker"
 
 export default function HomePage() {
   // FOOTER YEAR
@@ -531,7 +531,7 @@ export default function HomePage() {
                 {/* Footer Text */}
                 <div className="text-center space-y-2 pt-4 border-t border-white/10">
                   <p className="text-sm text-cyan-200">✧ "KAUSTUBH" is live. "RADIO" is tuning in… ✧</p>
-                  <p className="text-xs text-white/70 font-light">Coming Soon. Transform your LIFE... Start now.</p>
+                  <p className="text-xs text-white/70">Coming Soon. Transform your LIFE... Start now.</p>
                   <div className="inline-block mt-2 px-3 py-1 rounded-full bg-red-500/20 border border-red-400/40">
                     <span className="text-xs font-semibold text-red-300">WARNING: Instant Karma Delivery</span>
                   </div>
@@ -825,66 +825,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* HOROSCOPE */}
-        <section id="horoscope" className="relative mt-16 sm:mt-24 text-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid gap-6 lg:grid-cols-3">
-              {/* form */}
-              <div className="glass glow rounded-3xl p-6 lg:col-span-1">
-                <h3 className="font-cinzel title-tight text-2xl font-semibold">Daily Horoscope Preview</h3>
-                <div className="mt-4 space-y-3 text-sm">
-                  <div>
-                    <label className="mb-1 block text-sm">Date of Birth</label>
-                    <input
-                      value={hDob}
-                      onChange={(e) => setHDob(e.target.value)}
-                      type="date"
-                      className="glass focus-ring w-full rounded-xl bg-transparent px-3 py-2 text-white"
-                    />
-                  </div>
-                  <div>
-                    <label className="mb-1 block text-sm">Time of Birth (Optional)</label>
-                    <input
-                      value={hTob}
-                      onChange={(e) => setHTob(e.target.value)}
-                      type="time"
-                      className="glass focus-ring w-full rounded-xl bg-transparent px-3 py-2 text-white"
-                    />
-                  </div>
-                  <div>
-                    <label className="mb-1 block text-sm">Location</label>
-                    <input
-                      value={hLoc}
-                      onChange={(e) => setHLoc(e.target.value)}
-                      type="text"
-                      placeholder="e.g., New Delhi"
-                      className="glass focus-ring w-full rounded-xl bg-transparent px-3 py-2 text-white"
-                    />
-                  </div>
-                </div>
-                <button
-                  className="btn mt-5 w-full justify-center text-sm font-medium"
-                  onClick={handleHoroscopeGenerate}
-                >
-                  <Stars className="h-4 w-4" strokeWidth={1.5} />
-                  Reveal Preview
-                </button>
-              </div>
-
-              {/* preview */}
-              <div className="glass glow p-6 rounded-3xl lg:col-span-2">
-                <h4 className="font-cinzel title-tight font-semibold text-xl">Today's Cosmic Forecast</h4>
-                <p className="text-sm text-white/70">
-                  A snapshot of your energetic landscape, tailored to your birth details.
-                </p>
-                <div
-                  className="mt-4 rounded-xl bg-gradient-to-r from-cyan-500/10 via-fuchsia-500/10 to-teal-500/10 p-4 text-lg text-cyan-100/90"
-                  dangerouslySetInnerHTML={{ __html: hPreview }}
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* KARMIC PATTERN BREAKER */}
+        <KarmicPatternBreaker />
 
         {/* KARMIC MAP */}
         <section id="karmic" className="relative mt-16 sm:mt-24 text-white">
