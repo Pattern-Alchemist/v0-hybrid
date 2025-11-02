@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
-import { Cinzel, Inter } from "next/font/google"
+import { Inter, Cinzel } from "next/font/google"
 import "./globals.css"
-import { Analytics } from "@vercel/analytics/react"
-import { SpeedInsights } from "@vercel/speed-insights/next"
-import SiteHeader from "@/components/SiteHeader"
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+})
 
 const cinzel = Cinzel({
   subsets: ["latin"],
@@ -11,16 +13,37 @@ const cinzel = Cinzel({
   weight: ["400", "600", "700"],
 })
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-})
-
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.astrokalki.com"),
-  title: "AstroKalki — Karma Balance",
-  description: "10‑minute karmic snapshots with practical actions.",
-    generator: 'v0.app'
+  metadataBase: new URL("https://www.astrokalki.com"),
+  title: {
+    default: "AstroKalki | Precision Karmic Warnings",
+    template: "%s | AstroKalki",
+  },
+  description:
+    "Get direct karmic warning readings from AstroKalki. Discover your 14-day danger window, the energy leaks around you, and the boundaries you cannot cross.",
+  openGraph: {
+    title: "AstroKalki | Precision Karmic Warnings",
+    description:
+      "Get direct karmic warning readings from AstroKalki. Discover your 14-day danger window, the energy leaks around you, and the boundaries you cannot cross.",
+    url: "https://www.astrokalki.com",
+    siteName: "AstroKalki",
+    images: [
+      {
+        url: "/placeholder.jpg",
+        width: 1200,
+        height: 630,
+        alt: "AstroKalki cosmic gradient",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AstroKalki | Precision Karmic Warnings",
+    description:
+      "Direct, surgical karmic readings with zero sugarcoating. Secure your field now.",
+    images: ["/placeholder.jpg"],
+  },
 }
 
 export default function RootLayout({
@@ -29,12 +52,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${cinzel.variable} ${inter.variable}`}>
-      <body className="min-h-screen bg-black font-inter text-white antialiased">
-        <SiteHeader />
+    <html lang="en" className={`${inter.variable} ${cinzel.variable}`} suppressHydrationWarning>
+      <body className="min-h-screen bg-[#0a0a0f] font-sans text-white antialiased">
         {children}
-        <Analytics />
-        <SpeedInsights />
       </body>
     </html>
   )
