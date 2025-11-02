@@ -1,10 +1,14 @@
 import AdminDashboard, { type LeadRecord } from "@/components/AdminDashboard"
 import AdminLoginForm, { type FormState } from "@/components/AdminLoginForm"
+import {
+  ADMIN_COOKIE_KEY,
+  ADMIN_SESSION_MAX_AGE_SECONDS,
+  createSignedAdminSession,
+  verifySignedAdminSession,
+} from "@/lib/adminSession"
 import { getSupabaseClient, isSupabaseConfigured } from "@/lib/supabaseClient"
 import { revalidatePath } from "next/cache"
 import { cookies } from "next/headers"
-
-const ADMIN_COOKIE_KEY = "astro-admin-auth"
 
 const loginAction = async (_: FormState, formData: FormData): Promise<FormState> => {
   "use server"
@@ -20,16 +24,23 @@ const loginAction = async (_: FormState, formData: FormData): Promise<FormState>
     return { error: "Incorrect password. Access denied." }
   }
 
-  const cookieStore = cookies()
-  cookieStore.set({
-    name: ADMIN_COOKIE_KEY,
-    value: "authenticated",
-    httpOnly: true,
-    sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
-    path: "/",
-    maxAge: 60 * 60 * 12,
-  })
+  try {
+    const cookieStore = cookies()
+    const { value } = createSignedAdminSession()
+
+    cookieStore.set({
+      name: ADMIN_COOKIE_KEY,
+      value,
+      httpOnly: true,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+      path: "/",
+      maxAge: ADMIN_SESSION_MAX_AGE_SECONDS,
+    })
+  } catch (error) {
+    console.error("Failed to create admin session", error)
+    return { error: "Admin session is not configured correctly." }
+  }
 
   revalidatePath("/admin")
   return { success: true }
@@ -60,7 +71,7 @@ const fetchLeads = async (): Promise<LeadRecord[]> => {
 
 const AdminPage = async () => {
   const cookieStore = cookies()
-  const isAuthenticated = cookieStore.get(ADMIN_COOKIE_KEY)?.value === "authenticated"
+  const isAuthenticated = verifySignedAdminSession(cookieStore.get(ADMIN_COOKIE_KEY)?.value)
 
   const leads = isAuthenticated ? await fetchLeads() : []
 

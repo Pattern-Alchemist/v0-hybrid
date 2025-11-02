@@ -1,4 +1,6 @@
+import { ADMIN_COOKIE_KEY, verifySignedAdminSession } from "@/lib/adminSession"
 import { getSupabaseClient, isSupabaseConfigured } from "@/lib/supabaseClient"
+import { cookies } from "next/headers"
 
 export async function POST(request: Request) {
   const data = await request.json()
@@ -41,6 +43,12 @@ export async function PUT(request: Request) {
 
   if (!data?.id) {
     return Response.json({ error: "Missing lead id" }, { status: 400 })
+  }
+
+  const isAuthenticated = verifySignedAdminSession(cookies().get(ADMIN_COOKIE_KEY)?.value)
+
+  if (!isAuthenticated) {
+    return Response.json({ error: "Unauthorized" }, { status: 401 })
   }
 
   if (!isSupabaseConfigured) {
