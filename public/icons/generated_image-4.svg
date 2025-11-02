@@ -1,0 +1,31 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="128" height="128" rx="32" fill="#080712" />
+  <g filter="url(#filter0_f)">
+    <circle cx="50" cy="40" r="30" fill="#0EA5E9" fill-opacity="0.35" />
+    <circle cx="88" cy="70" r="28" fill="#D946EF" fill-opacity="0.35" />
+  </g>
+  <path d="M40 86C40 68 52 56 64 56C76 56 88 68 88 86" stroke="url(#paint0_linear)" stroke-width="5" stroke-linecap="round" />
+  <path d="M38 94H90" stroke="url(#paint1_linear)" stroke-width="4" stroke-linecap="round" />
+  <circle cx="64" cy="50" r="16" stroke="url(#paint2_linear)" stroke-width="4" fill="rgba(20,184,166,0.12)" />
+  <path d="M64 38V46" stroke="#22D3EE" stroke-width="4" stroke-linecap="round" />
+  <path d="M64 54V62" stroke="#D946EF" stroke-width="4" stroke-linecap="round" />
+  <defs>
+    <filter id="filter0_f" x="6" y="-4" width="120" height="132" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+      <feGaussianBlur stdDeviation="10" result="effect1_foregroundBlur" />
+    </filter>
+    <linearGradient id="paint0_linear" x1="40" y1="86" x2="88" y2="86" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#14B8A6" />
+      <stop offset="1" stop-color="#38BDF8" />
+    </linearGradient>
+    <linearGradient id="paint1_linear" x1="38" y1="94" x2="90" y2="94" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE" />
+      <stop offset="1" stop-color="#D946EF" />
+    </linearGradient>
+    <linearGradient id="paint2_linear" x1="48" y1="50" x2="80" y2="50" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#06B6D4" />
+      <stop offset="1" stop-color="#D946EF" />
+    </linearGradient>
+  </defs>
+</svg>
